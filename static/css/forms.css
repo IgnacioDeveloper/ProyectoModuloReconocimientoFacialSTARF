@@ -1,0 +1,168 @@
+ /*FORMULARIO*/
+
+ form{
+    height:100%;
+    width:100%;
+ }
+
+ .forms{
+    position:relative;
+    margin:auto;
+    top:5%;
+    display:none;
+    width:95%;
+    height:90%;
+    background-color:rgba(51,51,51,0.8);
+    z-index:2;
+ }
+
+ .forms.small-forms{
+    width:45%;
+ }
+
+  /* FORMULARIOS:TITULOS */
+
+ .forms h1{
+    position:absolute;
+    font-family:arial;
+    font-size:1.5em;
+    color:white;
+    top:0%;
+    left:1%;
+ }
+
+ .forms h1.subtitulo{
+    position:relative;
+    font-size:1.2em;
+    margin-bottom:0;
+    text-align: left;
+    left:2.8%;
+    overflow:wrap;
+    color:black;
+ }
+
+ /* FORMULARIOS:BOTONES GENERALES */
+
+#btnCerrar{
+    position:absolute;
+    font-family:Verdana;
+    font-weight:normal;
+    font-size:1em;
+    color:white;
+    top:1%;
+    right:1%;
+ }
+
+#btnCerrar:hover{
+    cursor:pointer;
+    font-size:1.5em;
+    color:lightblue;
+    transition:0.2s;
+ }
+
+form .btnInferiores{
+    font-family:arial;
+    font-size:1.1em;
+    position:relative;
+    float:center;
+    top:93%;
+    z-index:10;
+}
+
+/* FORMULARIOS:DISTRIBUCION */
+
+.form-content{
+    position:absolute;
+    background:#bababc;
+    width:100%;
+    height:80%;
+    top:10%;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.form-content > div.left{
+    position:relative;
+    background:#bababc;
+    height:100%;
+    width:40%;
+    float:left;
+}
+
+.form-content > div.right{
+    position:relative;
+    background:darkgrey;
+    height:100%;
+    width:60%;
+    float:right;
+}
+
+.forms div.distribucion-superior{
+    width:50%;
+    float:left;
+    margin-bottom:0.98%;
+ }
+
+
+/* FORMULARIOS:COMPONENTES */
+
+.form-content p label{
+    font-weight:bold;
+    font-family:arial;
+    font-size:1em;
+}
+
+.form-content input[type='text']{
+    color:black;
+    font-family:arial;
+    font-size:1em;
+    text-align:center;
+}
+
+.form-content input[type='text'].tinyNumber{
+    width:10%
+}
+
+.form-content input[type='text'].mediumNumber{
+    width:20%
+}
+
+.form-content input[type='text'].onelineDescription{
+    width:50%
+}
+
+.form-content input[type='email'].onelineDescription{
+    text-align:center;
+    width:50%;
+}
+
+.form-content select{
+    color:black;
+    font-family:arial;
+    font-size:1.25em;
+}
+
+.form-content select.normalSelect{
+    width:50%;
+}
+
+/*VISOR DE IMAGENES*/
+
+.visor{
+    background-color:white;
+    margin:auto;
+    overflow:auto;
+    width:90%;
+    height:78%;
+    max-width:90%;
+    max-height:78%;
+    margin-bottom:0.5%
+}
+
+.visor img{
+    position:relative;
+    height:50%;
+    width:25%;
+    float:left;
+}
+

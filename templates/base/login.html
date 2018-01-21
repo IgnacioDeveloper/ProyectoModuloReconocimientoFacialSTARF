@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang='es'>
+	<head>
+		<meta charset='UTF-8'>
+		<title>STARF - login</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	</head>
+	<body>
+		<div id='loginFormContent'>
+			<h1>Modulo de Reconocimiento Facial STARF</h1>
+			<img/>
+			<form>
+				<label>Usuario</label><br/>
+				<input id='txtUsername' type='text'><br/>
+				<label>Contraseña</label><br/>
+				<input id='txtContrasena' type='password'><br/>
+				<input id='btnLogin' type='submit' value="Acceder al Sistema">
+			</form>
+		</div>
+	</body>
+</html>

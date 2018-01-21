@@ -1,0 +1,22 @@
+{% extends 'mr/list_templates/listado.html' %}
+
+{% block list-block %}
+    <table class="lista">
+            <tbody>
+                <tr class="headers">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% if object_list %}
+                {% for alumno in object_list %}
+                    <tr data-value="{{ alumno.legajo }}">
+                        <td>{{ alumno.legajo }}</td>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>{{ alumno.apellido }}</td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+    </table>
+{% endblock %}

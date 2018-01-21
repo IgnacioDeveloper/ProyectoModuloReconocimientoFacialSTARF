@@ -1,0 +1,207 @@
+html{
+    font-size:14px
+}
+
+body {
+  display: table;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background: grey url("../images/background2.png");
+    background-size:cover
+  width: 100%;
+}
+
+/*ENCABEZADO*/
+
+header{
+    position:fixed;
+    background-color:#310160;
+    height:5.5em
+}
+
+header img{
+    float:left;
+    margin-top:0;
+}
+
+header h1{
+    position:relative;
+    padding-left:1em;
+    font-family:arial;
+    line-height:0.2em;
+    font-size:1.5em;
+    top:0;
+    left:0;
+    color:white;
+    float:left
+}
+
+header h4{
+    position:relative;
+    padding-right:1em;
+    font-family:arial;
+    line-height:0.1em;
+    margin:0;
+    font-size:1em;
+    top:0;
+    right:0;
+    color:white;
+    clear:both;
+    float:right
+}
+
+.generalone{
+  display: table-row;
+  font-family: arial;
+}
+
+/*BARRA DE MENUS*/
+
+/*ESTILOS GENERALES*/
+
+#menuBar{
+	position:fixed;
+	top:60px;
+	margin:0;
+	width:100%;
+	z-index: 5;
+}
+
+#menuBar nav ul{
+	list-style: none;
+	padding:0;
+}
+
+#menuBar nav li{
+	line-height: 2.4rem;
+	position:relative;
+}
+
+#menuBar .menu a{
+	color:black;
+	display: block;
+	padding: 0 1em;
+	text-decoration: none;
+	transition:.4s;
+}
+
+#menuBar .menu a:hover{
+	background: #7379d2;
+}
+
+
+
+#menuBar .menu a:active{
+	background: #0000ff;
+}
+
+#menuBar .menu ul{
+	position:absolute;
+}
+/*
+nav li ul{
+	display: none;
+}
+
+nav li:hover > ul{
+	display:block;
+}
+*/
+/*PRIMER NIVEL*/
+
+#menuBar .menu{
+	background: #bababc;
+	display:table;
+	width:100%;
+}
+#menuBar .menu > li{
+	float:left;
+	width:180px;
+	font-weight: bold;
+	text-align: center;
+	border-right: 1px solid #d7d8de;
+}
+
+#menuBar .menu > li > a > img{
+    float:left
+}
+
+#menuBar .menu > li:last-child{
+    border-right:0
+}
+
+/*SEGUNDO NIVEL*/
+
+#menuBar nav li li{
+	background:rgba(255,255,255,0.98);
+	max-height: 0;
+	transition:all .8s;
+	overflow: hidden;
+	width:180px;
+	z-index:5;
+}
+
+#menuBar nav li:hover > ul > li{
+	max-height:500px;
+	overflow:visible;
+}
+
+#menuBar .menu > li > ul{
+	top: 100%;
+}
+
+/*TERCER NIVEL*/
+
+#menuBar .menu  ul  ul{
+    left:100%;
+    top:0;
+}
+
+
+/*FOOTER INFERIOR (FECHA-HORA E INFORMACION DEL USUARIO)*/
+
+ footer {
+   position:fixed;
+   background: #310160;
+   width:100%;
+   bottom: 0;
+   z-index: 5;
+ }
+
+ footer img{
+    margin-right:1em;
+    float:left;
+ }
+
+ footer h2{
+ 	color:white;
+ 	font-family: arial;
+ 	font-size: 1.3em;
+ 	margin:0 0.3em;
+ }
+
+ footer #lblReloj{
+ 	text-align: right;
+ 	float:right;
+ }
+
+ footer #lblUserInfo{
+ 	text-align: left;
+ 	float:left;
+
+ }
+
+ /*CONTENT*/
+ #content{
+    position:fixed;
+    width:100%;
+    height:80%;
+	top:16%;
+	margin:auto;
+	z-index:-1;
+	visibility:none;
+ }
+
+
+

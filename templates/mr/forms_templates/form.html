@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% block main-block %}
+    <div id="form-type" class="forms">
+        <h1 class="tituloForm"></h1>
+        <span id="btnCerrar">X</span>
+        <form method="post">
+            {% block form-block %}
+            {% endblock %}
+            <input id="oldURLdata" type = "hidden">
+            <button type = "submit" id="button1" class="btnInferiores"></button>
+            <button id="button2" class="btnInferiores"></button>
+        </form>
+    </div>
+{% endblock %}

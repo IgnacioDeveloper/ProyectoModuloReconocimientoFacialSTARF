@@ -1,0 +1,58 @@
+body{
+    font-size:1em;
+    background: grey url("../images/background2.png");
+    background-size:cover
+}
+
+#loginFormContent{
+   position:relative;
+   margin:0 auto;
+   width: 70%;
+   background:rgba(150,150,150,0.4);
+}
+
+#loginFormContent img{
+    content: url("../images/starf_logo.png");
+    display:block;
+    margin:0 auto;
+    opacity:0.88
+}
+
+#loginFormContent h1{
+    padding-top:2%;
+    font-weight:black;
+    font-family:arial;
+    font-size:2em;
+    text-align:center;
+}
+
+#loginFormContent > form {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
+
+#loginFormContent > form label{
+    font-family:arial;
+    font-weight:bold;
+    font-size:1.5em;
+    color:black;
+}
+
+#loginFormContent > form input:not([type = 'submit']) {
+    position:relative;
+    font-size:1.5em;
+    text-align:center;
+}
+
+#loginFormContent > form input[type='submit']{
+    color:white;
+    background:darkblue;
+    font-size:1.5em;
+    font-family:arial
+}
+
+#loginFormContent > form *{
+    margin-bottom:2%;
+}
+

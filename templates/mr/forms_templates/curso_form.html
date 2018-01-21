@@ -1,0 +1,11 @@
+{% extends 'asistencia/form.html' %}
+
+{% block form-block %}
+    <div class="form-content">
+        <form>
+            <p>Numero del Curso</p><input id="txtNumCurso" class="txt-int tinyNumber" type="text" value="">
+            <p>Descripcion</p><input id="txtDescripcion" class="txt-string onelineDescription" type="text" value="">
+            <p>Edificio:</p><select id="selectCurso" class="full-select normalSelect"><option>Edificio Central</option><option>Concepcion</option></select>
+        </form>
+    </div>
+{% endblock %}

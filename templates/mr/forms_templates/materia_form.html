@@ -1,0 +1,46 @@
+{% extends 'form.html' %}
+
+{% block form-block %}
+    <div class="form-content">
+        <div class="left">
+                <h1 class="subtitulo">Datos de la Materia</h1>
+                <hr/>
+            <form>
+                <p>Codigo de la Materia</p><input id="txtCodMateria" class="txt-int mediumNumber" type="text" value="">
+                <p>Descripcion</p><input id="txtDescripcion" class="txt-string onelineDescription" type="text" value="">
+                <p>Tipo</p><select id="selectTipo" class="full-select normalSelect"><option>Anual</option><option>Cuatrimestral (1ºCuatrimestre)</option><option>Cuatrimestral (2ºCuatrimestre)</option></select>
+            </form>
+        </div>
+        <div class="right">
+            <h1 class="subtitulo">Listado de Alumnos |   Otros Listados<select></select></h1>
+            <hr>
+            {% load staticfiles %}
+            <link rel="stylesheet" type="text/css" href="{% static 'asistencia/css/listado.css' %}">
+            <div class="listado">
+                <div class="searchBar">
+                    <p>Criterio de Busqueda:</p>
+                    <input id="txtCriterio" class = "txt-string onelineDescription" type="text" value="">
+                    <p>Buscar por:</p>
+                    <select id="selectCampo"></select>
+                </div>
+                <br/>
+                <table>
+                    <tr class="headers">
+                        <td>Legajo</td>
+                        <td>Apellido</td>
+                        <td>Nombre</td>
+                        <td>Comision</td>
+                        <td>Año</td>
+                    </tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+                </table>
+                <br/>
+                <div class="commandBar">
+                    <input id="btnAgregar" type="button" value="Vincular">
+                    <input id="btnConsultar" type="button" value="Consultar Info">
+                    <input id="btnEliminar" type="button" value="Desvincular">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

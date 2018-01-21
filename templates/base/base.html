@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>STARF</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/listado.css' %}">
+</head>
+<body>
+    <header>
+        <img src="{% static 'images/utn_icono.png' %}">
+        <img src="{% static 'images/starf_icono.png' %}">
+        <h1>Universidad Teconlogica Nacional - Facultad Regional Tucuman (UTN-FRT)</h1>
+        <h1>Modulo de Reconocimiento Facial de STARF.</h1>
+        <div id = "menuBar" class="generalone">
+            <nav>
+                <ul class = "menu">
+                    <li><a href="#"><img src="{% static 'icons/alumnos.png' %}">Alumnos</a>
+                        <ul>
+                            <li><a href="/mr/alumnos/add">Nuevo Alumno</a></li>
+                            <li><a href="/mr/alumnos/list">Registro de Alumnos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/camaras.png' %}">Aulas y Camaras</a>
+                        <ul>
+                            <li><a href="#">Nueva Aula</a></li>
+                            <li><a href="#">Registro de Aulas</a></li>
+                            <li><a href="#">Nueva Camara</a></li>
+                            <li><a href="#">Registro de Camaras</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/comisiones.png' %}">Comisiones</a>
+                        <ul>
+                            <li><a href="#">Nueva Comision</a></li>
+                            <li><a href="#">Registro Comisiones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/materias.png' %}">Materias</a>
+                        <ul>
+                            <li><a href="#"><a href="/menuPrincipal/materia/add/">Nueva Materia</a></li>
+                            <li><a href="#">Registro de Materias</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/clases.png' %}">Clases</a>
+                        <ul>
+                            <li><a href="#">Nueva Clase</a></li>
+                            <li><a href="#">Cronograma Clases</a></li>
+                            <li><a href="#">Planillas de Asistencia</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/usuarios.png' %}">Usuarios</a>
+                        <ul>
+                            <li><a href="/mr/usuarios/add">Nuevo Usuario</a></li>
+                            <li><a href="/mr/usuarios/list">Registro de Usuarios</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><img src="{% static 'icons/salir.png' %}">Cerrar Sesion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        {% block main-block %}
+        {% endblock %}
+    </div>
+    <footer>
+        <h2 id = "lblUserInfo">UserInfo Checking</h2>
+		<h2 id = "lblReloj">Updating ServerTime</h2>
+    </footer>
+    <script type="text/javascript" src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/DjangoAjax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/behaviour.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/reloj.js' %}"></script>
+</body>
+</html>

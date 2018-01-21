@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block main-block %}
+    <div class="listado">
+        <div class="searchBar">
+            <div><p class="listado-title"></p></div>
+            <hr/>
+            <p id="lblCriterio">Criterio de Busqueda:</p>
+            <input id="inputCriterio">
+            <p id="lblCampo">Buscar por:</p>
+            <select id="selectCampo"></select>
+            <button id="btnBuscar">Buscar</button>
+            <p id="lblResultado">Resultados:</p>
+            <span id="btnCerrar">X</span>
+        </div>
+        {% block list-block %}
+        {% endblock %}
+        <div class="commandBar">
+            <button class="btnAdd">Agregar</button>
+            <button class="btnModify">Modificar</button>
+            <button class="btnConsult">Consultar</button>
+            <button class="btnDelete">Eliminar</button>
+            <button class="btnVolver">Volver</button>
+        </div>
+    </div>
+{% endblock %}
