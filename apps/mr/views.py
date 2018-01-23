@@ -22,7 +22,9 @@ class AlumnoCreateView(generic.CreateView):
     model = Alumno
     form_class = AlumnoForm
     template_name = "../templates/mr/crud_forms/create_alumno.html"
-    success_url = reverse_lazy('mr:index')
+
+    def get_success_url(self):
+        return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
 
 class UsuarioList(generic.ListView):
     model = Usuario
@@ -32,7 +34,9 @@ class UsuarioCreateView(generic.CreateView):
     model = Usuario
     form_class = UsuarioForm
     template_name = "../templates/mr/crud_forms/create_usuario.html"
-    success_url = reverse_lazy('mr:index')
+
+    def get_success_url(self):
+        return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
 
 """REQUESTS"""
 

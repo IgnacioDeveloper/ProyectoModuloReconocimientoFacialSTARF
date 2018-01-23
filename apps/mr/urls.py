@@ -6,8 +6,8 @@ app_name = 'mr'
 
 urlpatterns = [
     url(r'^$', login, {'template_name':'base/login.html'}, name='login'),
-    url(r'^alumnos/add$', views.AlumnoCreateView.as_view(), name='alumno_add'),
-    url(r'^alumnos/list', views.AlumnoList.as_view(),name='alumno_list'),
+    url(r'^alumnos/add$', views.AlumnoCreateView.as_view(), name='alumnos_add'),
+    url(r'^alumnos/list', views.AlumnoList.as_view(),name='alumnos_list'),
     url(r'^usuarios/add', views.UsuarioCreateView.as_view(), name='usuarios_add'),
     url(r'^usuarios/list', views.UsuarioList.as_view(),name='usuarios_list'),
     url(r'^index$', views.IndexView.as_view(), name='index'),
