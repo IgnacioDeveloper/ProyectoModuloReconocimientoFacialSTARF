@@ -10,7 +10,7 @@
                 </tr>
                 {% if object_list %}
                 {% for alumno in object_list %}
-                    <tr data-value="{{ alumno.legajo }}">
+                    <tr pk="{{ alumno.pk }}">
                         <td>{{ alumno.legajo }}</td>
                         <td>{{ alumno.nombre }}</td>
                         <td>{{ alumno.apellido }}</td>

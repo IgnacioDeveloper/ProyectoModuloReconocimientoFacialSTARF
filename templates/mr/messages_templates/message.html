@@ -1,12 +1,13 @@
 {% extends 'base/base.html' %}
-
 {% block main-block %}
-    <div id="form-type" class="forms">
-        <h1 class="tituloForm"></h1>
+    <div id="message-type" class="messages">
+        <h1 class="tituloMessage"></h1>
         <span id="btnCerrar">X</span>
+        {% csrf_token %}
         <form method="post">
-            {% block form-block %}
-            {% endblock %}
+            <div class = 'message-content'>
+                <h3></h3>
+            </div>
             <input id="oldURLdata" name="oldURLdata" type = "hidden">
             <button type = "submit" id="button1" class="btnInferiores"></button>
             <button id="button2" class="btnInferiores"></button>

@@ -4,20 +4,30 @@ $("main").ready(function(){
 	console.log(subUrl);
 	var entidad='', tipo=null;
 	console.log(subUrl);
-	switch(subUrl){
-		case "alumnos/add" : entidad = "alumno";tipo = 0; break;
-		case "usuarios/add" : entidad = "usuario"; tipo = 0;break;
-		case "alumnos/modify" : entidad = "alumno";tipo = 1; break;
-		case "usuarios/modify" : entidad = "usuario"; tipo = 1;break;
-		case "alumnos/consult" : entidad = "alumno";tipo = 2; break;
-		case "usuarios/consult" : entidad = "usuario"; tipo = 2;break;
-		case "alumnos/delete" : entidad = "alumno";tipo = 3; break;
-		case "usuarios/delete" : entidad = "usuario"; tipo = 3;break;
-		case "alumnos/list" : entidad = "alumno"; break;
-		case "usuarios/list" : entidad = "usuario";break;
+	if(/^[0-9]+$/.test(subUrl.substring(subUrl.length - 1))){
+	    subUrl = subUrl.substring(0,subUrl.lastIndexOf('/'));
+	    console.log('Number Detected');
+	    console.log(subUrl);
+	    switch(subUrl){
+	        case "alumnos/modify" : entidad = "alumno";tipo = 1; break;
+            case "usuarios/modify" : entidad = "usuario"; tipo = 1;break;
+            case "alumnos/consult" : entidad = "alumno";tipo = 2; break;
+            case "usuarios/consult" : entidad = "usuario"; tipo = 2;break;
+            case "alumnos/eliminate" : entidad = "alumno";tipo = 3; break;
+            case "usuarios/eliminate" : entidad = "usuario"; tipo = 3;break;
+	    }
+	} else{
+	    switch(subUrl){
+            case "alumnos/add" : entidad = "alumno";tipo = 0; break;
+            case "usuarios/add" : entidad = "usuario"; tipo = 0;break;
+            case "alumnos/list" : entidad = "alumno"; break;
+            case "usuarios/list" : entidad = "usuario";break;
+        }
 	}
-	if(tipo === null) prepareListado(entidad)
-	else prepareFormulario(entidad,tipo);
+	if(tipo === null) prepareListado(entidad);
+    else if(tipo === 0 || tipo === 1 || tipo === 2) prepareFormulario(entidad,tipo);
+    else prepareMessage(entidad,tipo);
+
 });
 
 //FORMULARIOS
@@ -114,6 +124,7 @@ function prepareUsuarioForm(tipo){
     $('#id_password').addClass('onelineDescription');
 }
 
+
 //LISTADO
 
 var selectedRow = null;
@@ -169,6 +180,12 @@ function prepareListado(entidad){
 function prepareListadoAlumno(){
     $(".listado-title").text('Listado de Alumnos');
     $(".btnAdd").click(function(){location.href="../alumnos/add"})
+    $(".btnModify").click(function(){
+        location.href="../alumnos/modify/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $(".btnDelete").click(function(){
+        location.href="../alumnos/eliminate/"+$(".listado tbody tr.selected").attr('pk');
+    })
     $("tr:first-child td:nth-child(1)").html('Legajo');
     $("tr:first-child td:nth-child(2)").html('Nombre');
     $("tr:first-child td:nth-child(3)").html('Apellido');
@@ -207,5 +224,25 @@ function eventos(){
         filter();
     })
 }
+
+//MESSAGES
+
+function prepareMessage(entidad,tipo){
+    if(tipo === 3) prepareDeleteMessage(entidad);
+}
+
+
+function prepareDeleteMessage(entidad){
+    var mensaje = 'Esta seguro que desea eliminar';
+    $('.messages .tituloMessage').text('Advertencia!!!')
+    $('.messages #button1').text('Si, deseo eliminarlo')
+    $('.messages #button2').text('Cancelar')
+    switch(entidad){
+        case 'alumno': mensaje+=' al alumno </br>Legajo: {{ object.legajo }}, Nombre y Apellido: {{ object.nombre }} {{object.apellido}} ?';break;
+    }
+    $('.message-content > h3').html(mensaje);
+    $('.messages').show();
+}
+
 
 eventos();
