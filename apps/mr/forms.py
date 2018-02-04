@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from apps.mr.models import Alumno
+from apps.mr.models import Alumno, Aula
 
 class AlumnoForm(forms.ModelForm):
 
@@ -26,6 +26,23 @@ class AlumnoForm(forms.ModelForm):
             'mail': forms.EmailInput(attrs={'class':'form-control'}),
         }
 
+class AulaForm(forms.ModelForm):
+
+    class Meta:
+        model = Aula
+        fields = [
+                'numero',
+                'descripcion',
+        ]
+        labels = {
+            'numero':'Numero',
+            'descripcion':'Descripcion',
+        }
+        widgets = {
+            'numero': forms.TextInput(attrs={'class':'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class':'form-control'}),
+        }
+
 class UsuarioForm(UserCreationForm):
 
     class Meta:
@@ -45,3 +62,4 @@ class UsuarioForm(UserCreationForm):
             'last_name': forms.TextInput(attrs={'class':'form-control'}),
             'username': forms.TextInput(attrs={'class':'form-control'}),
         }
+

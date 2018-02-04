@@ -12,5 +12,13 @@ class Alumno(models.Model):
     mail = models.CharField(max_length=200)
 
     def __str__(self):
-        print(json.dumps(model_to_dict(self)))
         return json.dumps(model_to_dict(self))
+
+class Aula(models.Model):
+    numero = models.CharField(max_length=5)
+    descripcion = models.CharField(max_length=65)
+
+    def __str__(self):
+        return json.dumps(model_to_dict(self))
+
+

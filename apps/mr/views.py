@@ -4,15 +4,19 @@ from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
-from apps.mr.models import Alumno
-from apps.mr.forms import AlumnoForm, UsuarioForm
+from apps.mr.models import Alumno, Aula
+from apps.mr.forms import AlumnoForm, AulaForm, UsuarioForm
 from servertasks.clock import Reloj
 import json
 
-"""VIEWS"""
+#VIEWS
+
+#INDEX
 
 class IndexView(generic.TemplateView):
     template_name = "../templates/mr/index.html"
+
+#ALUMNO
 
 class AlumnoList(generic.ListView):
     model = Alumno
@@ -26,7 +30,6 @@ class AlumnoCreateView(generic.CreateView):
     def get_success_url(self):
         return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
 
-
 class AlumnoUpdateView(generic.UpdateView):
     model = Alumno
     form_class = AlumnoForm
@@ -38,6 +41,34 @@ class AlumnoDeleteView(generic.DeleteView):
     form_class = AlumnoForm
     template_name = "../templates/mr/messages_templates/message.html"
     success_url = reverse_lazy("mr:alumnos_list")
+
+#AULA
+
+class AulaList(generic.ListView):
+    model = Aula
+    template_name = "../templates/mr/list_templates/aula_list.html"
+
+class AulaCreateView(generic.CreateView):
+    model = Aula
+    form_class = AulaForm
+    template_name = "../templates/mr/forms_templates/aula_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
+
+class AulaUpdateView(generic.UpdateView):
+    model = Aula
+    form_class = AulaForm
+    template_name = "../templates/mr/forms_templates/aula_form.html"
+    success_url = reverse_lazy("mr:aulas_list")
+
+class AulaDeleteView(generic.DeleteView):
+    model = Aula
+    form_class = AulaForm
+    template_name = "../templates/mr/messages_templates/message.html"
+    success_url = reverse_lazy("mr:aulas_list")
+
+#USUARIO
 
 class UsuarioList(generic.ListView):
     model = User
@@ -60,10 +91,10 @@ class UsuarioUpdateView(generic.UpdateView):
 class UsuarioDeleteView(generic.DeleteView):
     model = User
     form_class = UsuarioForm
-    template_name = "../templates/mr/forms_templates/usuario_form.html"
+    template_name = "../templates/mr/messages_templates/message.html"
     success_url = reverse_lazy("mr:usuarios_list")
 
-"""REQUESTS"""
+#REQUESTS
 
 def get_servidor_time(request):
     return HttpResponse(Reloj.get_servidor_time())

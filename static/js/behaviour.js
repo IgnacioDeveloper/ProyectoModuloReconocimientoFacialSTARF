@@ -10,17 +10,19 @@ $("main").ready(function(){
 	    console.log(subUrl);
 	    switch(subUrl){
 	        case "alumnos/modify" : entidad = "alumno";tipo = 1; break;
+            case "aulas/modify" : entidad = "aula";tipo = 1; break;
             case "usuarios/modify" : entidad = "usuario"; tipo = 1;break;
-            case "alumnos/consult" : entidad = "alumno";tipo = 2; break;
-            case "usuarios/consult" : entidad = "usuario"; tipo = 2;break;
             case "alumnos/eliminate" : entidad = "alumno";tipo = 3; break;
+            case "aulas/eliminate" : entidad = "aula";tipo = 3; break;
             case "usuarios/eliminate" : entidad = "usuario"; tipo = 3;break;
 	    }
 	} else{
 	    switch(subUrl){
             case "alumnos/add" : entidad = "alumno";tipo = 0; break;
+            case "aulas/add" : entidad = "aula";tipo = 0; break;
             case "usuarios/add" : entidad = "usuario"; tipo = 0;break;
             case "alumnos/list" : entidad = "alumno"; break;
+            case "aulas/list" : entidad = "aula";break;
             case "usuarios/list" : entidad = "usuario";break;
         }
 	}
@@ -49,11 +51,11 @@ function prepareFormulario(entidad,tipo){
 	}
 
 function customGeneralItems(entidad,tipo){
-    var titulo,textoBoton1,textoBoton2 = "Cancelar";
+    var titulo,textoBoton1,textoBoton2 = "Volver";
     var entidadesMasculinas = ["alumno","usuario"];
     switch(tipo){
         case 0: titulo = "Nuev"; textoBoton1 = "Guardar Informacion de"; break;
-        case 1: titulo = "Modificar informacion de"; textoBoton1 = "Guardar Cambios de"; break
+        case 1: titulo = "Informacion de"; textoBoton1 = "Guardar Cambios Realizados de"; break
         case 2: titulo = "Consultar Informacion de"; textoBoton1 = "Editar Informacion de";
                 textoBoton2 = "Ok"; break;
     }
@@ -79,7 +81,9 @@ function prepareAlumnoForm(tipo){
 }
 
 function prepareAulaForm(tipo){
-
+    $('#form-type').addClass('small-forms');
+    $('#id_numero').addClass('mediumNumber');
+    $('#id_descripcion').addClass('onelineDescription');
 }
 
 function prepareCamaraForm(tipo){
@@ -156,6 +160,7 @@ function prepareListado(entidad){
     var columnas;
     switch(entidad){
         case 'alumno': prepareListadoAlumno();break;
+        case 'aula': prepareListadoAula();break;
         case 'usuario': prepareListadoUsuario();break;
     }
 }
@@ -176,6 +181,22 @@ function prepareListadoAlumno(){
     $("tr td:nth-child(2)").width('5%');
     $("tr td:nth-child(3)").width('5%');
     $("#selectCampo").append('<option>Legajo</option><option>Nombre</option><option>Apellido</option>');
+}
+
+function prepareListadoAula(){
+    $(".listado-title").text('Listado de Aulas');
+    $(".btnAdd").click(function(){location.href="../aulas/add"})
+    $(".btnModify").click(function(){
+        location.href="../aulas/modify/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $(".btnDelete").click(function(){
+        location.href="../aulas/eliminate/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $("tr:first-child td:nth-child(1)").html('Numero');
+    $("tr:first-child td:nth-child(2)").html('Descripcion');
+    $("tr td:nth-child(1)").width('2%');
+    $("tr td:nth-child(2)").width('5%');
+    $("#selectCampo").append('<option>Numero</option><option>Descripcion</option>');
 }
 
 function prepareListadoUsuario(){
@@ -248,6 +269,8 @@ function prepareDeleteMessage(entidad){
     $('.messages #button2').text('Cancelar')
     switch(entidad){
         case 'alumno': mensaje+=' al alumno </br>Legajo: '+args['legajo']+', Nombre y Apellido: '+args['nombre']+' '+args['apellido']+' ?';break;
+        case 'alumno': mensaje+=' al aula </br>Numero: '+args['numero']+' ?';break;
+        case 'usuario': mensaje+=' al usuario </br>Username: '+args['username']+', Nombre y Apellido: '+args['first_name']+' '+args['last_name']+' ?';break;
     }
     $('.message-content > h3').html(mensaje);
     $('.messages').show();
@@ -264,3 +287,4 @@ function contar_caracter(caracter, cadena){
 }
 
 eventos();
+
