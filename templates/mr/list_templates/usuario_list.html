@@ -7,17 +7,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 {% if object_list %}
                 {% for usuario in object_list %}
-                    <tr data-value="{{ usuario.codigo_usuario }}">
-                        <td>{{ usuario.codigo_usuario }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.apellido }}</td>
+                    <tr pk="{{ usuario.pk }}">
+                        <td>{{ usuario.first_name }}</td>
+                        <td>{{ usuario.last_name }}</td>                                                
                         <td>{{ usuario.username }}</td>
-                        <td>{{ usuario.tipo }}</td>
                     </tr>
                 {% endfor %}
                 {% endif %}

@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
-from django.http import HttpResponse
-from apps.mr.models import Alumno, Usuario
-from apps.mr.forms import UsuarioForm, AlumnoForm
+from django.http import HttpResponse, HttpResponseRedirect
+from apps.mr.models import Alumno
+from apps.mr.forms import AlumnoForm, UsuarioForm
 from servertasks.clock import Reloj
 import json
 
@@ -26,6 +26,7 @@ class AlumnoCreateView(generic.CreateView):
     def get_success_url(self):
         return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
 
+
 class AlumnoUpdateView(generic.UpdateView):
     model = Alumno
     form_class = AlumnoForm
@@ -39,11 +40,11 @@ class AlumnoDeleteView(generic.DeleteView):
     success_url = reverse_lazy("mr:alumnos_list")
 
 class UsuarioList(generic.ListView):
-    model = Usuario
+    model = User
     template_name = "../templates/mr/list_templates/usuario_list.html"
 
 class UsuarioCreateView(generic.CreateView):
-    model = Usuario
+    model = User
     form_class = UsuarioForm
     template_name = "../templates/mr/forms_templates/usuario_form.html"
 
@@ -51,13 +52,13 @@ class UsuarioCreateView(generic.CreateView):
         return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
 
 class UsuarioUpdateView(generic.UpdateView):
-    model = Usuario
+    model = User
     form_class = UsuarioForm
     template_name = "../templates/mr/forms_templates/usuario_form.html"
     success_url = reverse_lazy("mr:usuarios_list")
 
 class UsuarioDeleteView(generic.DeleteView):
-    model = Usuario
+    model = User
     form_class = UsuarioForm
     template_name = "../templates/mr/forms_templates/usuario_form.html"
     success_url = reverse_lazy("mr:usuarios_list")

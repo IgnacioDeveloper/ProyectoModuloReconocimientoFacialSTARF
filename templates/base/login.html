@@ -10,11 +10,12 @@
 		<div id='loginFormContent'>
 			<h1>Modulo de Reconocimiento Facial STARF</h1>
 			<img/>
-			<form>
+			<form method = 'post'>
+				{% csrf_token %}
 				<label>Usuario</label><br/>
-				<input id='txtUsername' type='text'><br/>
+				<input name='username' id='txtUsername' type='text'><br/>
 				<label>Contraseña</label><br/>
-				<input id='txtContrasena' type='password'><br/>
+				<input name='password' id='txtContrasena' type='password'><br/>
 				<input id='btnLogin' type='submit' value="Acceder al Sistema">
 			</form>
 		</div>

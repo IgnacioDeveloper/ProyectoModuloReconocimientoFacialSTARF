@@ -1,15 +1,9 @@
 from django.db import models
-
-class Usuario(models.Model):
-    codigo_usuario = models.CharField(max_length=5)
-    nombre = models.CharField(max_length = 65)
-    apellido = models.CharField(max_length= 65)
-    username = models.CharField(max_length=45)
-    password = models.CharField(max_length=200)
-    tipo = models.CharField(max_length=2)
-
-    def __str__(self):
-        return self.codigoUsuario
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.forms.models import model_to_dict
+from django.dispatch import receiver
+import json
 
 class Alumno(models.Model):
     legajo = models.CharField(max_length=5)
@@ -18,4 +12,5 @@ class Alumno(models.Model):
     mail = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.legajo
+        print(json.dumps(model_to_dict(self)))
+        return json.dumps(model_to_dict(self))

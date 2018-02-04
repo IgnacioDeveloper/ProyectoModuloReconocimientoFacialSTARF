@@ -1,9 +1,9 @@
+var args;
+
 $("main").ready(function(){
 	var path = window.location.pathname;
 	var subUrl = path.substring(4);
-	console.log(subUrl);
 	var entidad='', tipo=null;
-	console.log(subUrl);
 	if(/^[0-9]+$/.test(subUrl.substring(subUrl.length - 1))){
 	    subUrl = subUrl.substring(0,subUrl.lastIndexOf('/'));
 	    console.log('Number Detected');
@@ -30,27 +30,10 @@ $("main").ready(function(){
 
 });
 
+
 //FORMULARIOS
 
 function prepareFormulario(entidad,tipo){
-        var oldURL = document.referrer;
-        var curURL = document.URL;
-        oldURL="../"+oldURL.substring(oldURL.indexOf('mr/')).substring(3);
-        curURL="../"+curURL.substring(curURL.indexOf('mr/')).substring(3);
-        console.log(oldURL);
-        console.log(curURL);
-        console.log(oldURL.substring(3));
-        $("#oldURLdata").val(oldURL.substring(3));
-        if(oldURL.length>0 && oldURL.substring(oldURL.lastIndexOf('/'))
-            !==curURL.substring(curURL.lastIndexOf('/'))){
-            $("#btnCerrar").click(function(){location.href=oldURL})
-            $("#button2").click(function(){location.href=oldURL})
-        }
-        else{
-            $("#btnCerrar").click(function(){location.href='../index'})
-            $("#button2").click(function(){location.href='../index'})
-        }
-
         $(".forms").fadeIn();
         $('label').after('<br/>');
 		customGeneralItems(entidad,tipo);
@@ -197,20 +180,46 @@ function prepareListadoAlumno(){
 
 function prepareListadoUsuario(){
     $(".listado-title").text('Listado de Usuarios');
-    $("tr:first-child td:nth-child(1)").html('Cod');
-    $("tr:first-child td:nth-child(2)").html('Nombre');
-    $("tr:first-child td:nth-child(3)").html('Apellido');
-    $("tr:first-child td:nth-child(4)").html('Username');
-    $("tr:first-child td:nth-child(5)").html('Tipo');
-    $("tr td:nth-child(1)").width('2%');
+    $(".btnAdd").click(function(){location.href="../usuarios/add"})
+    $(".btnModify").click(function(){
+        location.href="../usuarios/modify/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $(".btnDelete").click(function(){
+        location.href="../usuarios/eliminate/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $("tr:first-child td:nth-child(1)").html('Nombre');
+    $("tr:first-child td:nth-child(2)").html('Apellido');
+    $("tr:first-child td:nth-child(3)").html('Username');
+    $("tr td:nth-child(1)").width('5%');
     $("tr td:nth-child(2)").width('5%');
     $("tr td:nth-child(3)").width('5%');
-    $("tr td:nth-child(4)").width('2%');
-    $("tr td:nth-child(5)").width('2%');
-    $("#selectCampo").append('<option>Codigo</option><option>Nombre</option><option>Apellido</option><option>Username</option><option>Tipo</option>');
+    $("#selectCampo").append('<option>Nombre</option><option>Apellido</option><option>Username</option><option>');
 }
 
 function eventos(){
+    //BOTONES GENERALES DE VOLVER FORMULARIOS Y MENSAJES
+    var oldURL = document.referrer;
+    var curURL = document.URL;
+    oldURL="../"+oldURL.substring(oldURL.indexOf('mr/')).substring(3);
+    curURL="../"+curURL.substring(curURL.indexOf('mr/')).substring(3);
+    console.log(oldURL);
+    console.log(curURL);
+    console.log(oldURL.substring(3));
+    $("#oldURLdata").val(oldURL.substring(3));
+    if(oldURL.length>0 && oldURL.substring(oldURL.lastIndexOf('/'))
+        !==curURL.substring(curURL.lastIndexOf('/'))){
+        $("#btnCerrar").click(function(){
+            location.href='../'.repeat(contar_caracter('/',curURL)-1)+'mr/'+oldURL
+        })
+        $("#button2").click(function(){
+            location.href='../'.repeat(contar_caracter('/',curURL)-1)+'mr/'+oldURL
+        })
+    }
+    else{
+        $("#btnCerrar").click(function(){location.href='../index'})
+        $("#button2").click(function(){location.href='../index'})
+    }
+    //LISTADO
     $('.listado table.lista').click(function(e){
         releaseSelectedRow();
         selectedRow = e.target.parentNode;
@@ -238,11 +247,20 @@ function prepareDeleteMessage(entidad){
     $('.messages #button1').text('Si, deseo eliminarlo')
     $('.messages #button2').text('Cancelar')
     switch(entidad){
-        case 'alumno': mensaje+=' al alumno </br>Legajo: {{ object.legajo }}, Nombre y Apellido: {{ object.nombre }} {{object.apellido}} ?';break;
+        case 'alumno': mensaje+=' al alumno </br>Legajo: '+args['legajo']+', Nombre y Apellido: '+args['nombre']+' '+args['apellido']+' ?';break;
     }
     $('.message-content > h3').html(mensaje);
     $('.messages').show();
 }
 
+//USEFUL FUNCTIONS
+
+function contar_caracter(caracter, cadena){
+    var counter=0;
+    for(i=0;i<cadena.length;i++)
+        if(cadena[i]===caracter)
+            counter++;
+    return counter
+}
 
 eventos();

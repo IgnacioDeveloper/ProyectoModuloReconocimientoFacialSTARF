@@ -146,6 +146,18 @@ form .btnInferiores{
     width:50%;
 }
 
+.form-content .errorlist{
+    display:block;
+}
+
+.form-content .helptext{
+    display:block;
+}
+
+.form-content > ul{
+    display:none;
+}
+
 /*VISOR DE IMAGENES*/
 
 .visor{
