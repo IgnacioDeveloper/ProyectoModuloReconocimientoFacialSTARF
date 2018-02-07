@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from apps.mr.models import Alumno, Aula
+from apps.mr.models import Alumno, Aula, Camara
 
 class AlumnoForm(forms.ModelForm):
 
@@ -42,6 +42,27 @@ class AulaForm(forms.ModelForm):
             'numero': forms.TextInput(attrs={'class':'form-control'}),
             'descripcion': forms.TextInput(attrs={'class':'form-control'}),
         }
+
+class CamaraForm(forms.ModelForm):
+
+    class Meta:
+        model = Camara
+        fields = [
+            'ip',
+            'descripcion',
+            'aula',
+        ]
+        labels = {
+            'ip':'Direccion IP',
+            'descripcion':'Descripcion',
+            'aula':'Aula'
+        }
+        widgets = {
+            'ip' : forms.TextInput(attrs={'class':'form-control'}),
+            'descripcion' : forms.TextInput(attrs={'class':'form-control'}),
+            'aula' : forms.Select(attrs={'class':'form-control'}),
+        }
+
 
 class UsuarioForm(UserCreationForm):
 

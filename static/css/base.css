@@ -90,8 +90,6 @@ header h4{
 	background: #7379d2;
 }
 
-
-
 #menuBar .menu a:active{
 	background: #0000ff;
 }
@@ -166,7 +164,7 @@ nav li:hover > ul{
    background: #310160;
    width:100%;
    bottom: 0;
-   z-index: 5;
+   z-index: 2;
  }
 
  footer img{
@@ -189,7 +187,6 @@ nav li:hover > ul{
  footer #lblUserInfo{
  	text-align: left;
  	float:left;
-
  }
 
  /*CONTENT*/

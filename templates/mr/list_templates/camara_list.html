@@ -1,0 +1,20 @@
+{% extends 'mr/list_templates/listado.html' %}
+
+{% block list-block %}
+    <table class="lista">
+            <tbody>
+                <tr class="headers">
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% if object_list %}
+                {% for camara in object_list %}
+                    <tr pk="{{ camara.pk }}">
+                        <td>{{ camara.ip }}</td>
+                        <td>{{ camara.aula }}</td>                  
+                    </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+    </table>
+{% endblock %}

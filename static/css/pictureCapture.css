@@ -1,0 +1,63 @@
+/* MODAL */
+
+#modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 40px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.97); /* Black w/ opacity */
+  z-index: 3;
+}
+
+#modal h1 {
+  font-family: arial;
+  color:white;
+}
+
+#modal h1.foto-title{
+  font-family: arial;
+  color:grey;
+}
+
+#modal h2 {
+  font-family: arial;
+  color:white;
+}
+
+#modal button{
+  font-family:arial;
+  font-size:1.5em;
+  position:relative;
+  float:center;
+  top:93%;
+  margin:0.5em;
+  z-index:10;
+}
+
+/* CIRCULO DE GUIA */
+
+#modal #circle{
+  position:absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px; 
+  margin:auto;
+  background: #35f903;
+}
+
+/* KEYFRAMES */
+
+@keyframes pic1{
+  from{transform:translateX(0)}
+  to{transform:translateX(700px);}
+}
+
+
+
+

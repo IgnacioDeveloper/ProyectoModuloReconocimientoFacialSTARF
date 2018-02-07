@@ -19,6 +19,15 @@ class Aula(models.Model):
     descripcion = models.CharField(max_length=65)
 
     def __str__(self):
-        return json.dumps(model_to_dict(self))
+    	aula_str = 'Aula '+self.numero
+    	aula_str = aula_str if len(self.descripcion) == 0 else aula_str +' ('+self.descripcion+')'
+    	return aula_str
 
+class Camara(models.Model):
+	ip = models.CharField(max_length=16)
+	descripcion = models.CharField(max_length=65)
+	aula = models.ForeignKey(Aula, null=False, blank=False, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return json.dumps(model_to_dict(self))
 

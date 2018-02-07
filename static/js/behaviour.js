@@ -1,3 +1,8 @@
+//Archivo Behaviour maneja el comportamiento dinamico del frot-end
+
+window.URL = window.URL || window.webkitURL; //prefijos en navegadores Firefox y Chrome
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
 var args;
 
 $("main").ready(function(){
@@ -11,18 +16,22 @@ $("main").ready(function(){
 	    switch(subUrl){
 	        case "alumnos/modify" : entidad = "alumno";tipo = 1; break;
             case "aulas/modify" : entidad = "aula";tipo = 1; break;
+            case "camaras/modify" : entidad = "camara";tipo = 1; break;
             case "usuarios/modify" : entidad = "usuario"; tipo = 1;break;
             case "alumnos/eliminate" : entidad = "alumno";tipo = 3; break;
             case "aulas/eliminate" : entidad = "aula";tipo = 3; break;
+            case "camaras/eliminate" : entidad = "camara";tipo = 3; break;
             case "usuarios/eliminate" : entidad = "usuario"; tipo = 3;break;
 	    }
 	} else{
 	    switch(subUrl){
             case "alumnos/add" : entidad = "alumno";tipo = 0; break;
             case "aulas/add" : entidad = "aula";tipo = 0; break;
+            case "camaras/add" : entidad = "camara";tipo = 0; break;
             case "usuarios/add" : entidad = "usuario"; tipo = 0;break;
             case "alumnos/list" : entidad = "alumno"; break;
             case "aulas/list" : entidad = "aula";break;
+            case "camaras/list" : entidad = "camara";break;
             case "usuarios/list" : entidad = "usuario";break;
         }
 	}
@@ -78,7 +87,11 @@ function prepareAlumnoForm(tipo){
     $('#id_nombre').addClass('onelineDescription');
     $('#id_apellido').addClass('onelineDescription');
     $('#id_mail').addClass('onelineDescription');
+    $('#btnObtenerFotos').click(function(){
+        runPictureCapture()
+    });
 }
+    
 
 function prepareAulaForm(tipo){
     $('#form-type').addClass('small-forms');
@@ -87,7 +100,10 @@ function prepareAulaForm(tipo){
 }
 
 function prepareCamaraForm(tipo){
-
+    $('#form-type').addClass('small-forms');
+    $('#id_ip').addClass('mediumNumber');
+    $('#id_descripcion').addClass('onelineDescription');
+    $('#id_curso').addClass('normalSelect');
 }
 
 function prepareComisionForm(tipo){
@@ -161,6 +177,7 @@ function prepareListado(entidad){
     switch(entidad){
         case 'alumno': prepareListadoAlumno();break;
         case 'aula': prepareListadoAula();break;
+        case 'camara': prepareListadoCamara();break;
         case 'usuario': prepareListadoUsuario();break;
     }
 }
@@ -197,6 +214,22 @@ function prepareListadoAula(){
     $("tr td:nth-child(1)").width('2%');
     $("tr td:nth-child(2)").width('5%');
     $("#selectCampo").append('<option>Numero</option><option>Descripcion</option>');
+}
+
+function prepareListadoCamara(){
+    $(".listado-title").text('Listado de Camaras');
+    $(".btnAdd").click(function(){location.href="../camaras/add"})
+    $(".btnModify").click(function(){
+        location.href="../camaras/modify/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $(".btnDelete").click(function(){
+        location.href="../camaras/eliminate/"+$(".listado tbody tr.selected").attr('pk');
+    })
+    $("tr:first-child td:nth-child(1)").html('Direccion IP');
+    $("tr:first-child td:nth-child(2)").html('Aula');
+    $("tr td:nth-child(1)").width('2%');
+    $("tr td:nth-child(2)").width('5%');
+    $("#selectCampo").append('<option>Direccion IP</option><option>Aula</option>');
 }
 
 function prepareListadoUsuario(){
@@ -276,6 +309,8 @@ function prepareDeleteMessage(entidad){
     $('.messages').show();
 }
 
+//CAPTURADOR DE IMAGENES
+
 //USEFUL FUNCTIONS
 
 function contar_caracter(caracter, cadena){
@@ -284,6 +319,20 @@ function contar_caracter(caracter, cadena){
         if(cadena[i]===caracter)
             counter++;
     return counter
+}
+
+function clear(element){
+    element.empty();
+}
+
+function insertAfter(element,referenceElement){
+    var contexto = referenceElement.parentNode;
+    if(referenceElement.nextSibling){
+        contexto.insertBefore(element,referenceElement);
+    }
+    else{
+        contexto.appendChild(element);
+    }
 }
 
 eventos();

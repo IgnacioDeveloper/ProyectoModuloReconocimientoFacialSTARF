@@ -1,0 +1,20 @@
+{% extends base_template %}
+
+{% block main-block %}
+    <div class="listado">
+        <div class="searchBar">
+            <div><p class="listado-title"></p></div>
+            <hr/>
+            <p id="lblCriterio">Criterio de Busqueda:</p>
+            <input id="inputCriterio">
+            <button id="btnBuscar">Buscar</button>
+            <p id="lblResultado">Resultados:</p>
+        </div>
+        {% block list-block %}
+        {% endblock %}
+        <div class="commandBar">
+            <button class="btnAdd">Vincular</button>
+            <button class="btnDelete">Desvincular</button>
+        </div>
+    </div>
+{% endblock %}

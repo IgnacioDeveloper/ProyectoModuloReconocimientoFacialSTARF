@@ -4,8 +4,8 @@ from django.views import generic
 from django.core.urlresolvers import reverse_lazy
 from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
-from apps.mr.models import Alumno, Aula
-from apps.mr.forms import AlumnoForm, AulaForm, UsuarioForm
+from apps.mr.models import Alumno, Aula, Camara
+from apps.mr.forms import AlumnoForm, AulaForm, CamaraForm, UsuarioForm
 from servertasks.clock import Reloj
 import json
 
@@ -67,6 +67,32 @@ class AulaDeleteView(generic.DeleteView):
     form_class = AulaForm
     template_name = "../templates/mr/messages_templates/message.html"
     success_url = reverse_lazy("mr:aulas_list")
+
+#CAMARA
+
+class CamaraList(generic.ListView):
+    model = Camara
+    template_name = "../templates/mr/list_templates/camara_list.html"
+
+class CamaraCreateView(generic.CreateView):
+    model = Camara
+    form_class = CamaraForm
+    template_name = "../templates/mr/forms_templates/camara_form.html"
+
+    def get_success_url(self):
+        return reverse_lazy("mr:"+self.request.POST.get('oldURLdata').replace('/', '_'))
+
+class CamaraUpdateView(generic.UpdateView):
+    model = Camara
+    form_class = CamaraForm
+    template_name = "../templates/mr/forms_templates/camara_form.html"
+    success_url = reverse_lazy("mr:camaras_list")
+
+class CamaraDeleteView(generic.DeleteView):
+    model = Camara
+    form_class = CamaraForm
+    template_name = "../templates/mr/messages_templates/message.html"
+    success_url = reverse_lazy("mr:camaras_list")
 
 #USUARIO
 

@@ -5,11 +5,13 @@
     <title>STARF</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/pictureCapture.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/messages.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/listado.css' %}">
 </head>
 <body>
+    <div id="modal" class="modal"></div>
     <header>
         <img src="{% static 'images/utn_icono.png' %}">
         <img src="{% static 'images/starf_icono.png' %}">
@@ -28,8 +30,8 @@
                         <ul>
                             <li><a href="/mr/aulas/add">Nueva Aula</a></li>
                             <li><a href="/mr/aulas/list">Registro de Aulas</a></li>
-                            <li><a href="#">Nueva Camara</a></li>
-                            <li><a href="#">Registro de Camaras</a></li>
+                            <li><a href="/mr/camaras/add">Nueva Camara</a></li>
+                            <li><a href="/mr/camaras/list">Registro de Camaras</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><img src="{% static 'icons/comisiones.png' %}">Comisiones</a>
@@ -70,6 +72,7 @@
         <h2 id = "lblUserInfo">Usuario: {{ user.first_name }} {{ user.last_name }} (username: {{ user.username }})</h2>
 		<h2 id = "lblReloj">Updating ServerTime</h2>
     </footer>
+    <script type="text/javascript" src="{% static 'js/pictureCapture.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery-3.2.1.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/DjangoAjax.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/behaviour.js' %}"></script>
